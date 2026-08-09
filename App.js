@@ -4,6 +4,7 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import SplashScreen from './src/screens/SplashScreen.js';
 import HomeScreen from './src/screens/HomeScreen.js';
+import AcesseScreen from './src/screens/AcesseScreen.js';
 
 
 
@@ -25,6 +26,11 @@ export default function App() {
         <Stack.Screen
           name="Home"
           component={HomeScreen}
+        />
+
+        <Stack.Screen
+          name="Acesse"
+          component={AcesseScreen}
         />
       </Stack.Navigator>
     </NavigationContainer>

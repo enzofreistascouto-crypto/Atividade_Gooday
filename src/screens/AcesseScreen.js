@@ -1,15 +1,10 @@
-
 import { View, Text, Image, StyleSheet, TouchableOpacity } from 'react-native';
 
 
-export default function HomeScreen({ navigation }) {
+export default function AcesseScreen({ navigation }) {
   return (
     <View style={styles.container}>
 
-      <Image
-        source={require("../../assets/casual_dog.png")}
-        style={styles.imagem}
-      />
       <Text style={styles.texto1}>
         Ótimo dia!
       </Text>
@@ -20,14 +15,9 @@ export default function HomeScreen({ navigation }) {
 
       <TouchableOpacity
         style={styles.botao}
-        onPress={() => navigation.navigate("Acesse")}
-        activeOpacity={0.7}
+        //onPress={() => navigation.navigate("Perfil")}
+        //activeOpacity={0.7}
       >
-        <Image
-        source={require("../../assets/Google.png")}
-        style={styles.imagemGoogle}
-      />
-
         <Text style={styles.textoBotao}>
           Como deseja acessar?
         </Text>
@@ -35,8 +25,8 @@ export default function HomeScreen({ navigation }) {
 
       <TouchableOpacity
         style={styles.botao2}
-        onPress={() => navigation.navigate("Acesse")}
-        activeOpacity={0.7}
+        //onPress={() => navigation.navigate("Perfil")}
+        //activeOpacity={0.7}
       >
         <Text style={styles.textoBotao2}>
           Outras opções
@@ -60,22 +50,12 @@ const styles = StyleSheet.create({
     height: 240,
   },
 
-  imagemGoogle: {
-    width: 30,
-    height: 30,
-    marginRight: 30,
-    backgroundColor: '#c5bfbf',
-    borderRadius: 2
-  },
-
   botao: {
     marginTop: 40,
     backgroundColor: '#00b050',
-    paddingVertical: 11,
-    paddingHorizontal: 10,
+    paddingVertical: 13,
+    paddingHorizontal: 65,
     borderRadius: 5,
-    flexDirection: 'row',
-    alignItems: 'center'
   },
 
   botao2: {
@@ -92,8 +72,7 @@ const styles = StyleSheet.create({
   textoBotao: {
     color: '#ffffff',
     fontSize: 13,
-    fontWeight: 460,
-    marginRight: 50
+    fontWeight: 460
   },
 
   textoBotao2: {
