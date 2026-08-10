@@ -6,6 +6,20 @@ import { Eye, EyeOff } from 'lucide-react-native';
 export default function AcesseScreen({ navigation }) {
   const [lembrarSenha, setLembrarSenha] = useState(false);  //usa o useState para alterar os valores de acordo com que os ícones são pressionados
   const [ocultarSenha, setOcultarSenha] = useState(true);
+  const [email, setEmail] = useState(""); //"passa os valores" digitados de email e senha;
+  const [senha, setSenha] = useState("");
+  const [loginValid, setLoginValid] = useState(0);
+
+  function acessar(){
+
+    if(
+      email === 'EnzoFreitasCouto' && senha === '190609'
+    ){
+      setLoginValid(true)
+    } else {
+      setLoginValid(false)
+    }
+  }
 
   return (
     <View style={styles.container}>
@@ -29,6 +43,8 @@ export default function AcesseScreen({ navigation }) {
             style={styles.input}
             placeholder='Digite seu E-mail'
             keyboardType='default'
+            onChangeText={setEmail}
+            value={email}
         />
         <Text style={styles.texto3}>Senha</Text>
         
@@ -37,6 +53,8 @@ export default function AcesseScreen({ navigation }) {
               style={styles.inputSenha}
               placeholder='Digite sua senha'
               secureTextEntry={ocultarSenha} 
+              onChangeText={setSenha}
+              value={senha}
           />
           <TouchableOpacity //usa um operador ternário (quase um if/else) para decidir como o "olho" deve ficar em cada estado 
             style={styles.botaoOlho}
@@ -45,6 +63,11 @@ export default function AcesseScreen({ navigation }) {
           > 
             {ocultarSenha ? (<EyeOff size={20} color="#9ea6aa" />) : (<Eye size={20} color="#00b050" />)}
           </TouchableOpacity>
+        </View>
+
+        <View style={styles.containerResposta}>
+        <Text style={[styles.textoCorreto, loginValid ? {display: "block"} : {display: 'none'}]}>Login completo!</Text>
+        <Text style={[styles.textoIncorreto, !loginValid ? {display: "block"} : {display: 'none'}]}>Login incorreto!</Text>
         </View>
 
         <View style={styles.linhaOpcoes}> 
@@ -69,7 +92,9 @@ export default function AcesseScreen({ navigation }) {
       </View>
 
       <View style={styles.containerBotoes}>
-        <TouchableOpacity style={styles.botao}>
+        <TouchableOpacity style={
+          styles.botao}
+          onPress={() => acessar()}>
           <Text style={styles.textoBotao}>Acessar</Text>
         </TouchableOpacity>
 
@@ -129,6 +154,14 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between', 
     width: '40%',               
     marginTop: 15, 
+  },
+
+   containerResposta: {
+    flexDirection: 'row',       
+    justifyContent: 'center', 
+    width: '100%',      
+    textAlign: 'center'
+
   },
 
   imagem: {
@@ -195,6 +228,23 @@ const styles = StyleSheet.create({
     fontSize: 12,
     marginLeft: 5, 
   },
+
+  textoCorreto: {
+    color: "#07b507",
+    fontWeight: '600',          
+    fontSize: 12,
+    marginLeft: 5, 
+    textAlign: 'center'
+  },
+
+  textoIncorreto: {
+    color: "#ce1515",
+    fontWeight: '600',          
+    fontSize: 12,
+    marginLeft: 5, 
+    textAlign: 'center',
+  },
+  
   input: {
     backgroundColor: '#dee5ec',
     width: '100%', 
