@@ -5,7 +5,8 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import SplashScreen from './src/screens/SplashScreen.js';
 import HomeScreen from './src/screens/HomeScreen.js';
 import AcesseScreen from './src/screens/AcesseScreen.js';
-
+import CadastroScreen from './src/screens/CadastroScreen.js';
+//importação dos componentes e bibliotecas
 
 
 const Stack = createNativeStackNavigator();
@@ -14,7 +15,7 @@ export default function App() {
   
   return (
     <NavigationContainer>
-      <Stack.Navigator
+      <Stack.Navigator  //"inicia navegação" e define a primeira tela
         initialRouteName="Splash"
         screenOptions={{ headerShown: false }}
       >
@@ -32,11 +33,16 @@ export default function App() {
           name="Acesse"
           component={AcesseScreen}
         />
+        <Stack.Screen
+          name="Cadastro"
+          component={CadastroScreen}
+        />
       </Stack.Navigator>
     </NavigationContainer>
   );
 }
 
+//estilização
 const styles = StyleSheet.create({
   container: {
     flex: 1,

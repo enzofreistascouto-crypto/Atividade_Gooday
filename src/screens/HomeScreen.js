@@ -1,9 +1,9 @@
 
 import { View, Text, Image, StyleSheet, TouchableOpacity } from 'react-native';
-
+//importação dos componentes e bibliotecas
 
 export default function HomeScreen({ navigation }) {
-  return (
+  return (  //retorna os textos, imagens, "botões"
     <View style={styles.container}>
 
       <Image
@@ -47,6 +47,7 @@ export default function HomeScreen({ navigation }) {
   );
 }
 
+//estilização
 const styles = StyleSheet.create({
   container: {
     flex: 1,

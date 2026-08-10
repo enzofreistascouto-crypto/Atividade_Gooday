@@ -1,10 +1,11 @@
 import { View,Text, Image, StyleSheet, ImageBackground } from 'react-native';
 import { useEffect } from 'react';
+//importação dos componentes e bibliotecas
 
 
 export default function SplashScreen({ navigation }) {
 
-  useEffect(() => {
+  useEffect(() => { //define tempo e pra qual página será redirecionado
     const timer = setTimeout(() => {
       navigation.replace("Home");
     }, 3000);
@@ -13,8 +14,8 @@ export default function SplashScreen({ navigation }) {
   }, []);
 
   return (
-    <View style={styles.container}>
-      <Image
+    <View style={styles.container}> 
+      <Image   //importa magem da pasta assets
         source={require("../../assets/logotipo.png")}
         style={styles.logo}
       />
@@ -22,6 +23,7 @@ export default function SplashScreen({ navigation }) {
   );
 }
 
+//estilização
 const styles = StyleSheet.create({
   container: {
     flex: 1,

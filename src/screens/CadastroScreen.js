@@ -4,33 +4,33 @@ import { Eye, EyeOff } from 'lucide-react-native';
 //importação dos componentes e bibliotecas
 
 export default function AcesseScreen({ navigation }) {
-  const [lembrarSenha, setLembrarSenha] = useState(false);  //usa o useState para alterar os valores de acordo com que os ícones são pressionados
+  const [lembrarSenha, setLembrarSenha] = useState(false);
   const [ocultarSenha, setOcultarSenha] = useState(true);
-
+//meso que na AcesseScreen.js, usa useState para definir o estado dos "olhinhos"
   return (
     <View style={styles.container}>
       <View style={styles.ContainerEsquerda}>
         <TouchableOpacity
-            onPress={() => navigation.navigate("Home")}  //define navegação de volta à primeira página
+            onPress={() => navigation.navigate("Acesse")} //define navegação
             activeOpacity={0.7}
         >
             <Image
              source={require("../../assets/voltar.png")}
-             style={styles.imagem}
+             style={styles.imagem} //importa imagem
              />
         </TouchableOpacity>
         
-        <Text style={styles.texto1}>Acesse</Text>
-        <Text style={styles.texto2Form}>Com E-mail e senha</Text>
+        <Text style={styles.texto1}>Cadastre-se</Text>
+        <Text style={styles.texto2}>Informe seu E-mail e crie uma senha</Text>
         <Text style={styles.texto3}>E-mail</Text>
         
-
-        <TextInput   
-            style={styles.input}
+        <TextInput
+            style={styles.input} //define input 
             placeholder='Digite seu E-mail'
             keyboardType='default'
         />
-        <Text style={styles.texto3}>Senha</Text>
+
+        <Text style={styles.texto3}>Crie uma senha</Text>
         
         <View style={styles.containerSenha}>
           <TextInput
@@ -38,53 +38,46 @@ export default function AcesseScreen({ navigation }) {
               placeholder='Digite sua senha'
               secureTextEntry={ocultarSenha} 
           />
-          <TouchableOpacity //usa um operador ternário (quase um if/else) para decidir como o "olho" deve ficar em cada estado 
+          <TouchableOpacity //vai definir o estado dos "olhos" com o auxílio do operador ternário também
             style={styles.botaoOlho}
-            onPress={() => setOcultarSenha(!ocultarSenha)} //define a váriavel que vai definir o estado do "olhinho"
+            onPress={() => setOcultarSenha(!ocultarSenha)}
             activeOpacity={0.7}
-          > 
-            {ocultarSenha ? (<EyeOff size={20} color="#9ea6aa" />) : (<Eye size={20} color="#00b050" />)}
-          </TouchableOpacity>
-        </View>
-
-        <View style={styles.linhaOpcoes}> 
-          <TouchableOpacity 
-            style={styles.checkboxContainer} //essas próximas linhas definem o checkbox
-            onPress={() => setLembrarSenha(!lembrarSenha)} 
-            activeOpacity={0.8}
           >
-            <View style={[
-              styles.checkbox, 
-              lembrarSenha && styles.checkboxSelecionado 
-            ]}>
-              {lembrarSenha && <Text style={styles.checkmark}>✓</Text>}
-            </View>
-            <Text style={styles.textoCheckbox}>Lembrar senha</Text>
+            {ocultarSenha ? (
+              <EyeOff size={20} color="#9ea6aa" />
+            ) : (
+              <Eye size={20} color="#00b050" />
+            )}
           </TouchableOpacity>
+        </View>
 
-          <Text style={styles.textoEsqueci}>
-            Esqueci minha senha
-          </Text>
+         <Text style={styles.texto3}>Repita senha</Text>
+        
+        <View style={styles.containerSenha}>
+          <TextInput
+              style={styles.inputSenha}
+              placeholder='Digite sua senha'
+              secureTextEntry={ocultarSenha} 
+          />
+          <TouchableOpacity 
+            style={styles.botaoOlho}
+            onPress={() => setOcultarSenha(!ocultarSenha)}
+            activeOpacity={0.7}
+          >
+            {ocultarSenha ? (
+              <EyeOff size={20} color="#9ea6aa" />
+            ) : (
+              <Eye size={20} color="#00b050" />
+            )}
+          </TouchableOpacity>
         </View>
       </View>
 
-      <View style={styles.containerBotoes}>
         <TouchableOpacity style={styles.botao}>
-          <Text style={styles.textoBotao}>Acessar</Text>
+          <Text style={styles.textoBotao}>Cadastrar</Text>
         </TouchableOpacity>
 
-        <TouchableOpacity 
-        onPress={() => navigation.navigate("Cadastro")}
-        activeOpacity={0.7}
-        style={styles.botao2}
-        >
-          <Text style={styles.textoBotao2}>
-            Cadastrar
-          </Text>
-        </TouchableOpacity>
-      </View>
-
-      <Text style={[styles.texto2, { marginTop: 20 }]}>
+      <Text style={[styles.textoBaixo, { marginTop: 20 }]}>
         ------------ Ou continue com ------------
       </Text>
 
@@ -116,19 +109,12 @@ const styles = StyleSheet.create({
     alignItems: 'flex-start', 
   },
 
-  containerBotoes: {
-    flexDirection: 'row',       
-    justifyContent: 'space-between', 
-    width: '90%',               
-    marginTop: 15, 
-    marginBottom: 30
-  },
-
   containerImagens: {
     flexDirection: 'row',       
     justifyContent: 'space-between', 
     width: '40%',               
-    marginTop: 15, 
+    marginTop: 6,
+    marginBottom: 8 
   },
 
   imagem: {
@@ -146,44 +132,33 @@ const styles = StyleSheet.create({
   botao: {
     backgroundColor: '#00b050',
     paddingVertical: 13,
+    paddingHorizontal: 140,
     width: '48%',               
     alignItems: 'center',
     borderRadius: 5,
+    marginTop: 40
   },
-  botao2: {
-    backgroundColor: '#ffffff',
-    paddingVertical: 13,
-    width: '48%',               
-    alignItems: 'center',
-    borderRadius: 5,
-    borderWidth: 2, 
-    borderStyle: 'solid',
-    borderColor: '#00b050'
-  },
+
   textoBotao: {
     color: '#ffffff',
     fontSize: 13,
     fontWeight: '500',          
   },
-  textoBotao2: {
-    color: '#363434',
-    fontSize: 13,
-    fontWeight: '500'
-  },
+ 
   texto1: {
     color: "#363434",
     fontWeight: '700',
     fontSize: 33,
     marginBottom: 1
   },
-  texto2: {
+  textoBaixo: {
     color: "#363434",
     fontSize: 11,
     textAlign: "center",
     marginBottom: 20,
     fontWeight: '700'
   },
-  texto2Form: {
+  texto2: {
     color: "#363434",
     fontSize: 11,
     marginBottom: 20,
@@ -198,7 +173,7 @@ const styles = StyleSheet.create({
   input: {
     backgroundColor: '#dee5ec',
     width: '100%', 
-    height: 45,
+    height: 40,
     marginTop: 5,
     marginBottom: 15,
     paddingHorizontal: 15,
@@ -211,7 +186,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     backgroundColor: '#dee5ec',
     width: '100%',
-    height: 45,
+    height: 40,
     marginTop: 5,
     marginBottom: 15,
     borderRadius: 3,
@@ -231,45 +206,4 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     height: '100%',
   },
-  linhaOpcoes: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    alignItems: 'center',
-    width: '100%',
-    marginTop: 10,
-  },
-  checkboxContainer: {
-    flexDirection: 'row',
-    alignItems: 'center',
-  },
-  checkbox: {
-    width: 18,
-    height: 18,
-    borderWidth: 2,
-    borderColor: '#00b050', 
-    borderRadius: 4,
-    justifyContent: 'center',
-    alignItems: 'center',
-    marginRight: 8,
-    backgroundColor: '#ffffff',
-  },
-  checkboxSelecionado: {
-    backgroundColor: '#00b050', 
-  },
-  checkmark: {
-    color: '#ffffff',
-    fontSize: 11,
-    fontWeight: 'bold',
-    lineHeight: 14,
-  },
-  textoCheckbox: {
-    color: '#363434',
-    fontSize: 12,
-    fontWeight: '600',
-  },
-  textoEsqueci: {
-    color: '#363434',
-    fontSize: 12,
-    fontWeight: '600',
-  }
 });
